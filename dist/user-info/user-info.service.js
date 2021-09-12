@@ -5,28 +5,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserInfoService = void 0;
 const common_1 = require("@nestjs/common");
+const userInfoDB_1 = require("../database/userInfoDB");
 let UserInfoService = class UserInfoService {
+    constructor(db) {
+        this.db = db;
+    }
     create(createUserInfoDto) {
-        return 'This action adds a new userInfo';
+        return this.db.create(createUserInfoDto);
     }
     findAll() {
-        return `This action returns all userInfo`;
+        return this.db.findAll();
     }
     findOne(id) {
-        return `This action returns a #${id} userInfo`;
+        return this.db.findOne(id);
     }
     update(id, updateUserInfoDto) {
-        return `This action updates a #${id} userInfo`;
+        return this.db.update(id, updateUserInfoDto);
     }
     remove(id) {
-        return `This action removes a #${id} userInfo`;
+        return this.db.remove(id);
     }
 };
 UserInfoService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [userInfoDB_1.default])
 ], UserInfoService);
 exports.UserInfoService = UserInfoService;
 //# sourceMappingURL=user-info.service.js.map
