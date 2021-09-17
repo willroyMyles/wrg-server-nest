@@ -1,92 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
-  provider = "mongodb"
-  url      = env("mongoUrl")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
+  provider = "prisma-client-js"
 }
 
 model UserInfo {
-  id           String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id           String         @id @default(uuid())
   username     String?
   userImageUrl String?
-  userId       String?
-  email        String?  @unique
+  userId       String?        @unique
+  email        String?        @unique
   alias        String?
-  // posts        Post[]   @relation("posts")
-  // watching     Post[]   @relation("watching")
+  posts        Post[]         @relation("posts")
+  watching     Post[]         @relation("watching")
   // incomings    Conversation[] @relation("incoming")
   // outgoings    Conversation[] @relation("outgoing")
   // postId       String?
-  createdAt    DateTime @default(now())
+  createdAt    DateTime       @default(now())
 }
 
-// model Post {
-//   id         String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
-//   title      String?
-//   content    String?
-//   category   String?
-//   make       String?
-//   model      String?
-//   username String
-//   userId String
-//   userImageUrl String
-//   year       Int?      @default(1000)
-//   views      Int?      @default(0)
-//   // comments     Comment[]
-//   userInfoId String?   @db.ObjectId
-//   watchingId String?   @db.ObjectId
-//   userInfo   UserInfo? @relation("posts", fields: [userInfoId], references: [id])
-//   watchers   UserInfo? @relation("watching", fields: [watchingId], references: [id])
-//   // Conversation Conversation[]
-//   createdAt  DateTime  @default(now())
-// }
+model Post {
+  id           String         @id @default(uuid())
+  title        String?
+  content      String?
+  category     String?
+  make         String?
+  model        String?
+  year         Int?           @default(1000)
+  views        Int?           @default(0)
+  userInfoId   String?
+  watchingId   String?
+  UserInfo     UserInfo?      @relation("posts", fields: [userInfoId], references: [userId])
+  watchers     UserInfo?      @relation("watching", fields: [watchingId], references: [id])
+  // comments     Comment[]
+  // Conversation Conversation[]
+  createdAt    DateTime       @default(now())
+}
 
+model Messages {
+  id             String        @id @default(uuid())
+  content        String?
+  sender         String?
+  // Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  // conversationId String?
+  createdAt      DateTime      @default(now())
 
-// model Messages {
-//   id             String        @id @default(dbgenerated()) @map("_id") @db.ObjectId
-//   content        String?
-//   sender         String?
-//   Conversation   Conversation? @relation(fields: [conversationId], references: [id])
-//   conversationId String?       @db.ObjectId
-//   createdAt      DateTime      @default(now())
+}
 
-// }
+model Comment {
+  id           String        @id @default(uuid())
+  content      String?
+  isOffer      Boolean       @default(false)
+  postId       String?
+  title        String?
+  userId       String?
+  userImageUrl String?
+  username     String?
+  // Post         Post?         @relation(fields: [postId], references: [id])
+  // Conversation Conversation?
+  createdAt    DateTime      @default(now())
 
-// model Comment {
-//   id           String        @id @default(dbgenerated()) @map("_id") @db.ObjectId
-//   content      String?
-//   isOffer      Boolean       @default(false)
-//   postId       String?       @db.ObjectId
-//   title        String?
-//   userId       String?       @db.ObjectId
-//   userImageUrl String?
-//   username     String?
-//   Post         Post?         @relation(fields: [postId], references: [id])
-//   Conversation Conversation?
-//   createdAt    DateTime      @default(now())
+}
 
-// }
+model Conversation {
 
-// model Conversation {
-
-//   id         String     @id @default(dbgenerated()) @map("_id") @db.ObjectId
-//   locked     Boolean    @default(false)
-//   userInfoId String?
-//   comment    Comment?   @relation(fields: [commentId], references: [id])
-//   post       Post?      @relation(fields: [postId], references: [id])
-//   messages   Messages[]
-//   commentId  String?    @db.ObjectId
-//   postId     String?    @db.ObjectId
-//   createdAt  DateTime   @default(now())
-//   senderId   String     @db.ObjectId
-//   recieverId String     @db.ObjectId
-//   newMessage String?
-//   reciever   UserInfo   @relation("incoming", fields: [recieverId], references: [id])
-//   sender     UserInfo   @relation("outgoing", fields: [senderId], references: [id])
-// }
+  id         String     @id @default(uuid())
+  locked     Boolean    @default(false)
+  userInfoId String?
+  // comment    Comment?   @relation(fields: [commentId], references: [id])
+  // post       Post?      @relation(fields: [postId], references: [id])
+  // messages   Messages[]
+  commentId  String?
+  postId     String?
+  createdAt  DateTime   @default(now())
+  senderId   String
+  recieverId String
+  newMessage String?
+  // reciever   UserInfo   @relation("incoming", fields: [recieverId], references: [id])
+  // sender     UserInfo   @relation("outgoing", fields: [senderId], references: [id])
+}

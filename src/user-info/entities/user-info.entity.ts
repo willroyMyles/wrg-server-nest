@@ -14,7 +14,7 @@ export class UserInfo {
     // @Field(()=> [Post], {nullable : false})
     // posts : Post[]
     // @Field(()=> [Post], {nullable : "items"})
-    // watching : Post[]
+    watching : Post[]
     // @Field(()=> [Conversation], {nullable : "itemsAndList"})
     // incomings : Conversation[]
     // @Field(()=> [Conversation], {nullable : "itemsAndList"})

@@ -8,8 +8,8 @@ export default class PostDatabse extends DbBase{
 
     async create(createPostDto: CreatePostDto) {
         try{
-            // var ans = await this.prismaClient.post.create({data : createPostDto});
-            // return ans;
+            var ans = await this.prismaClient.post.create({data : createPostDto});
+            return ans;
         }catch(e){
             console.log(e);
             return null;
@@ -18,8 +18,8 @@ export default class PostDatabse extends DbBase{
     
       async findAll() {
         try{
-            // var ans = await this.prismaClient.post.findMany();
-            // return ans;
+            var ans = await this.prismaClient.post.findMany({include : {UserInfo : true}});
+            return ans;
         }catch(e){
             console.log(e);
             return []; 

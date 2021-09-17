@@ -7,6 +7,8 @@ const dbBase_1 = require("./dbBase");
 class PostDatabse extends dbBase_1.default {
     async create(createPostDto) {
         try {
+            var ans = await this.prismaClient.post.create({ data: createPostDto });
+            return ans;
         }
         catch (e) {
             console.log(e);
@@ -15,6 +17,8 @@ class PostDatabse extends dbBase_1.default {
     }
     async findAll() {
         try {
+            var ans = await this.prismaClient.post.findMany();
+            return ans;
         }
         catch (e) {
             console.log(e);

@@ -1,5 +1,10 @@
 export class CreatePostDto {
-    username : string
-    userId : string
-    userImageUrl : string
+  id      :     string   
+  title   :   string
+  content    :string
+  category:   string
+  make     :  string
+  model     : string
+  year    :  number     
+  views    :  number
 }

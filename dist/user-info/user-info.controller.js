@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const user_info_service_1 = require("./user-info.service");
 const create_user_info_dto_1 = require("./dto/create-user-info.dto");
 const update_user_info_dto_1 = require("./dto/update-user-info.dto");
+const add_to_watch_dto_1 = require("./dto/add-to-watch.dto");
 let UserInfoController = class UserInfoController {
     constructor(userInfoService) {
         this.userInfoService = userInfoService;
@@ -24,17 +25,29 @@ let UserInfoController = class UserInfoController {
     create(createUserInfoDto) {
         return this.userInfoService.create(createUserInfoDto);
     }
+    modifyWatch(postToAdd) {
+        return this.userInfoService.addToWatch(postToAdd);
+    }
     findAll() {
         return this.userInfoService.findAll();
     }
-    findOne(id) {
-        return this.userInfoService.findOne(+id);
+    async findOne(id, res) {
+        try {
+            var ans = await this.userInfoService.findOne(id);
+            if (ans)
+                res.status(common_1.HttpStatus.OK).json(ans);
+            else
+                res.status(common_1.HttpStatus.NOT_FOUND).json(ans);
+        }
+        catch (e) {
+            return res.status(common_1.HttpStatus.NOT_FOUND).send();
+        }
     }
     update(id, updateUserInfoDto) {
-        return this.userInfoService.update(+id, updateUserInfoDto);
+        return this.userInfoService.update(id, updateUserInfoDto);
     }
     remove(id) {
-        return this.userInfoService.remove(+id);
+        return this.userInfoService.remove(id);
     }
 };
 __decorate([
@@ -45,6 +58,13 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserInfoController.prototype, "create", null);
 __decorate([
+    (0, common_1.Post)("/watching"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [add_to_watch_dto_1.AddToWatchRequest]),
+    __metadata("design:returntype", void 0)
+], UserInfoController.prototype, "modifyWatch", null);
+__decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -53,9 +73,10 @@ __decorate([
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], UserInfoController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),

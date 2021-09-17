@@ -12,12 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserInfoService = void 0;
 const common_1 = require("@nestjs/common");
 const userInfoDB_1 = require("../database/userInfoDB");
+const create_user_info_dto_1 = require("./dto/create-user-info.dto");
 let UserInfoService = class UserInfoService {
     constructor(db) {
         this.db = db;
     }
-    create(createUserInfoDto) {
-        return this.db.create(createUserInfoDto);
+    addToWatch(postToAdd) {
+        return this.db.addToWatch(postToAdd);
+    }
+    create(info) {
+        var data = new create_user_info_dto_1.CreateUserInfoDto();
+        data.email = info.email;
+        data.userId = info.userId;
+        data.userImageUrl = info.userImageUrl;
+        data.username = info.username;
+        return this.db.create(data);
     }
     findAll() {
         return this.db.findAll();
