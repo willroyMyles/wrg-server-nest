@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import PostDatabse from 'src/database/postDb';
+import PostDatabse from 'src/database/post.database';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 

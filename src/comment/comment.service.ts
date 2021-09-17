@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import  CommentDatabase  from 'src/database/commentDb';
+import  CommentDatabase  from 'src/database/comment.database';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 

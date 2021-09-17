@@ -35,7 +35,7 @@ model Post {
   watchingId   String?
   UserInfo     UserInfo?      @relation("posts", fields: [userInfoId], references: [userId])
   watchers     UserInfo?      @relation("watching", fields: [watchingId], references: [id])
-  // comments     Comment[]
+  comments     Comment[]
   // Conversation Conversation[]
   createdAt    DateTime       @default(now())
 }
@@ -59,7 +59,7 @@ model Comment {
   userId       String?
   userImageUrl String?
   username     String?
-  // Post         Post?         @relation(fields: [postId], references: [id])
+  Post         Post?         @relation(fields: [postId], references: [id])
   // Conversation Conversation?
   createdAt    DateTime      @default(now())
 

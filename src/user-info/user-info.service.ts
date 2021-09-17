@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import UserInfoDatabase from '../database/userInfoDB';
+import UserInfoDatabase from '../database/userInfo.database';
 import { AddToWatchRequest } from './dto/add-to-watch.dto';
 import { CreateUserInfoDto } from './dto/create-user-info.dto';
 import { UpdateUserInfoDto } from './dto/update-user-info.dto';
