@@ -5,6 +5,17 @@ import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostService {
+  incrimentView(id: string) {
+    return this.db.incrimentView(id);
+  }
+
+  incrimentWatching(id: string) {
+    return this.db.incrimentWatching(id);
+  }
+
+  incrimentComments(id: string) {
+    return this.db.incrimentComments(id);
+  }
 
   constructor(private db : PostDatabse){}
 

@@ -32,6 +32,21 @@ export class PostController {
     return this.postService.update(+id, updatePostDto);
   }
 
+  @Patch('/view/:id')
+  incrimentView(@Param('id') id: string) {
+    return this.postService.incrimentView(id);
+  }
+
+  @Patch('/view/:id')
+  incrimentComments(@Param('id') id: string) {
+    return this.postService.incrimentComments(id);
+  }
+
+  @Patch('/view/:id')
+  incrimentWatching(@Param('id') id: string) {
+    return this.postService.incrimentWatching(id);
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.postService.remove(+id);

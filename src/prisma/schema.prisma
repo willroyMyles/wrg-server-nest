@@ -16,9 +16,9 @@ model UserInfo {
   alias        String?
   posts        Post[]         @relation("posts")
   watching     Post[]         @relation("watching")
-  // incomings    Conversation[] @relation("incoming")
-  // outgoings    Conversation[] @relation("outgoing")
-  // postId       String?
+  incomings    Conversation[] @relation("incoming")
+  outgoings    Conversation[] @relation("outgoing")
+  postId       String?
   createdAt    DateTime       @default(now())
 }
 
@@ -31,12 +31,14 @@ model Post {
   model        String?
   year         Int?           @default(1000)
   views        Int?           @default(0)
+  watching     Int?           @default(0)
+  commentss    Int?           @default(0)
   userInfoId   String?
   watchingId   String?
   UserInfo     UserInfo?      @relation("posts", fields: [userInfoId], references: [userId])
   watchers     UserInfo?      @relation("watching", fields: [watchingId], references: [id])
   comments     Comment[]
-  // Conversation Conversation[]
+  Conversation Conversation[]
   createdAt    DateTime       @default(now())
 }
 
@@ -44,8 +46,8 @@ model Messages {
   id             String        @id @default(uuid())
   content        String?
   sender         String?
-  // Conversation   Conversation? @relation(fields: [conversationId], references: [id])
-  // conversationId String?
+  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId String?
   createdAt      DateTime      @default(now())
 
 }
@@ -60,7 +62,7 @@ model Comment {
   userImageUrl String?
   username     String?
   Post         Post?         @relation(fields: [postId], references: [id])
-  // Conversation Conversation?
+  Conversation Conversation?
   createdAt    DateTime      @default(now())
 
 }
@@ -70,15 +72,15 @@ model Conversation {
   id         String     @id @default(uuid())
   locked     Boolean    @default(false)
   userInfoId String?
-  // comment    Comment?   @relation(fields: [commentId], references: [id])
-  // post       Post?      @relation(fields: [postId], references: [id])
-  // messages   Messages[]
+  comment    Comment?   @relation(fields: [commentId], references: [id])
+  post       Post?      @relation(fields: [postId], references: [id])
+  messages   Messages[]
   commentId  String?
   postId     String?
   createdAt  DateTime   @default(now())
   senderId   String
   recieverId String
   newMessage String?
-  // reciever   UserInfo   @relation("incoming", fields: [recieverId], references: [id])
-  // sender     UserInfo   @relation("outgoing", fields: [senderId], references: [id])
+  reciever   UserInfo   @relation("incoming", fields: [recieverId], references: [id])
+  sender     UserInfo   @relation("outgoing", fields: [senderId], references: [id])
 }

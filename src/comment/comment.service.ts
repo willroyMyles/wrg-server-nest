@@ -5,6 +5,9 @@ import { UpdateCommentDto } from './dto/update-comment.dto';
 
 @Injectable()
 export class CommentService {
+  findOneForPost(id: string) {
+    return this.db.findOneForPost(id);
+  }
 
   constructor(private db : CommentDatabase){}
   create(createCommentDto: CreateCommentDto) {
