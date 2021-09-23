@@ -12,11 +12,14 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const user_info_module_1 = require("./user-info/user-info.module");
 const post_module_1 = require("./post/post.module");
+const comment_module_1 = require("./comment/comment.module");
+const conversation_module_1 = require("./conversation/conversation.module");
+const message_module_1 = require("./message/message.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_info_module_1.UserInfoModule, post_module_1.PostModule],
+        imports: [user_info_module_1.UserInfoModule, post_module_1.PostModule, comment_module_1.CommentModule, conversation_module_1.ConversationModule, message_module_1.MessageModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

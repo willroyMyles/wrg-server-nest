@@ -1,9 +1,9 @@
-import UserInfoDatabase from '../database/userInfoDB';
+import UserInfoDatabase from '../database/userInfo.database';
 import { AddToWatchRequest } from './dto/add-to-watch.dto';
 import { UpdateUserInfoDto } from './dto/update-user-info.dto';
 export declare class UserInfoService {
     private db;
-    addToWatch(postToAdd: AddToWatchRequest): Promise<any>;
+    addToWatch(postToAdd: AddToWatchRequest): Promise<boolean>;
     constructor(db: UserInfoDatabase);
     create(info: any): Promise<any>;
     findAll(): Promise<any>;

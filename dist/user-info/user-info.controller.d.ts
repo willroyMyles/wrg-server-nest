@@ -7,7 +7,7 @@ export declare class UserInfoController {
     private readonly userInfoService;
     constructor(userInfoService: UserInfoService);
     create(createUserInfoDto: CreateUserInfoDto): Promise<any>;
-    modifyWatch(postToAdd: AddToWatchRequest): Promise<any>;
+    modifyWatch(postToAdd: AddToWatchRequest, res: Response): Promise<void>;
     findAll(): Promise<any>;
     findOne(id: string, res: Response): Promise<Response<any, Record<string, any>>>;
     update(id: string, updateUserInfoDto: UpdateUserInfoDto): Promise<import(".prisma/client").UserInfo>;

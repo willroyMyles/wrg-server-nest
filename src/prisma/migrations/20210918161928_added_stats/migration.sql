@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Post" ADD COLUMN "commentss" INTEGER DEFAULT 0;
-ALTER TABLE "Post" ADD COLUMN "watching" INTEGER DEFAULT 0;

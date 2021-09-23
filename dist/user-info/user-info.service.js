@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserInfoService = void 0;
 const common_1 = require("@nestjs/common");
-const userInfoDB_1 = require("../database/userInfoDB");
+const userInfo_database_1 = require("../database/userInfo.database");
 const create_user_info_dto_1 = require("./dto/create-user-info.dto");
 let UserInfoService = class UserInfoService {
     constructor(db) {
@@ -43,7 +43,7 @@ let UserInfoService = class UserInfoService {
 };
 UserInfoService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [userInfoDB_1.default])
+    __metadata("design:paramtypes", [userInfo_database_1.default])
 ], UserInfoService);
 exports.UserInfoService = UserInfoService;
 //# sourceMappingURL=user-info.service.js.map

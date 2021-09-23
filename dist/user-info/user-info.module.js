@@ -10,13 +10,13 @@ exports.UserInfoModule = void 0;
 const common_1 = require("@nestjs/common");
 const user_info_service_1 = require("./user-info.service");
 const user_info_controller_1 = require("./user-info.controller");
-const userInfoDB_1 = require("../database/userInfoDB");
+const userInfo_database_1 = require("../database/userInfo.database");
 let UserInfoModule = class UserInfoModule {
 };
 UserInfoModule = __decorate([
     (0, common_1.Module)({
         controllers: [user_info_controller_1.UserInfoController],
-        providers: [user_info_service_1.UserInfoService, userInfoDB_1.default]
+        providers: [user_info_service_1.UserInfoService, userInfo_database_1.default]
     })
 ], UserInfoModule);
 exports.UserInfoModule = UserInfoModule;

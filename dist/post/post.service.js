@@ -11,10 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostService = void 0;
 const common_1 = require("@nestjs/common");
-const postDb_1 = require("../database/postDb");
+const post_database_1 = require("../database/post.database");
 let PostService = class PostService {
     constructor(db) {
         this.db = db;
+    }
+    incrimentView(id) {
+        return this.db.incrimentView(id);
+    }
+    incrimentWatching(id) {
+        return this.db.incrimentWatching(id);
+    }
+    incrimentComments(id) {
+        return this.db.incrimentComments(id);
     }
     create(createPostDto) {
         return this.db.create(createPostDto);
@@ -34,7 +43,7 @@ let PostService = class PostService {
 };
 PostService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [postDb_1.default])
+    __metadata("design:paramtypes", [post_database_1.default])
 ], PostService);
 exports.PostService = PostService;
 //# sourceMappingURL=post.service.js.map

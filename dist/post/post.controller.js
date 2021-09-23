@@ -21,8 +21,13 @@ let PostController = class PostController {
     constructor(postService) {
         this.postService = postService;
     }
-    create(createPostDto) {
-        return this.postService.create(createPostDto);
+    async create(post, res) {
+        var ans = await this.postService.create(post);
+        if (ans) {
+            res.status(201).json(ans);
+        }
+        else
+            res.status(500);
     }
     findAll() {
         return this.postService.findAll();
@@ -33,6 +38,15 @@ let PostController = class PostController {
     update(id, updatePostDto) {
         return this.postService.update(+id, updatePostDto);
     }
+    incrimentView(id) {
+        return this.postService.incrimentView(id);
+    }
+    incrimentComments(id) {
+        return this.postService.incrimentComments(id);
+    }
+    incrimentWatching(id) {
+        return this.postService.incrimentWatching(id);
+    }
     remove(id) {
         return this.postService.remove(+id);
     }
@@ -40,9 +54,10 @@ let PostController = class PostController {
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto, Object]),
+    __metadata("design:returntype", Promise)
 ], PostController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
@@ -65,6 +80,27 @@ __decorate([
     __metadata("design:paramtypes", [String, update_post_dto_1.UpdatePostDto]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)('/view/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], PostController.prototype, "incrimentView", null);
+__decorate([
+    (0, common_1.Patch)('/view/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], PostController.prototype, "incrimentComments", null);
+__decorate([
+    (0, common_1.Patch)('/view/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], PostController.prototype, "incrimentWatching", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
