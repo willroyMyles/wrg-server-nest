@@ -1,0 +1,95 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model UserInfo {
+  id             String   @id @default(uuid())
+  username       String?
+  userImageUrl   String?
+  userId         String?  @unique
+  email          String?  @unique
+  alias          String?
+  posts          Post[]   @relation("posts")
+  watching       Post[]   @relation("watching")
+  postId         String?
+  createdAt      DateTime @default(now())
+  recievedOffers Offer[]  @relation("recievedOffers")
+  sentOffers     Offer[]  @relation("sentOffers")
+}
+
+model Post {
+  id         String    @id @default(uuid())
+  title      String?
+  content    String?
+  category   String?
+  make       String?
+  model      String?
+  year       Int?      @default(2000)
+  views      Int?      @default(0)
+  watching   Int?      @default(0)
+  commentss  Int?      @default(0)
+  userInfoId String?
+  watchingId String?
+  UserInfo   UserInfo? @relation("posts", fields: [userInfoId], references: [userId])
+  watchers   UserInfo? @relation("watching", fields: [watchingId], references: [id])
+  comments   Comment[]
+  createdAt  DateTime  @default(now())
+  Offer      Offer[]
+}
+
+model Messages {
+  id             String        @id @default(uuid())
+  content        String?
+  sender         String?
+  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId String?
+  createdAt      DateTime      @default(now())
+}
+
+model Comment {
+  id           String   @id @default(uuid())
+  content      String?
+  isOffer      Boolean  @default(false)
+  postId       String?
+  title        String?
+  userId       String?
+  userImageUrl String?
+  username     String?
+  Post         Post?    @relation(fields: [postId], references: [id])
+  createdAt    DateTime @default(now())
+
+}
+
+model Conversation {
+
+  id         String     @id @default(uuid())
+  locked     Boolean    @default(false)
+  userInfoId String?
+  messages   Messages[]
+  commentId  String?
+  createdAt  DateTime   @default(now())
+  senderId   String
+  recieverId String
+  newMessage String?
+  offerId    String
+  offer      Offer?
+}
+
+model Offer {
+  id             String       @id @default(uuid())
+  post           Post         @relation(fields: [postId], references: [id])
+  sender         UserInfo     @relation("sentOffers", fields: [userInfoId], references: [id])
+  reciever       UserInfo     @relation("recievedOffers", fields: [userInfoId], references: [id])
+  accepted       Boolean      @default(false)
+  completed      Boolean      @default(false)
+  message        String
+  postId         String
+  userInfoId     String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId String
+}
