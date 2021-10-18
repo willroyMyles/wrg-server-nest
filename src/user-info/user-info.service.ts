@@ -6,6 +6,9 @@ import { UpdateUserInfoDto } from './dto/update-user-info.dto';
 
 @Injectable()
 export class UserInfoService {
+  getOtherUserInfo(id: string) {
+    return this.db.getOtherUserInfo(id);
+  }
   addToWatch(postToAdd: AddToWatchRequest) {
     return this.db.addToWatch(postToAdd)
   }

@@ -7,9 +7,10 @@ export default class ConversationDatabase extends DbBase {
     create(createConversationDto: CreateConversationDto): Promise<false | import(".prisma/client").Conversation>;
     addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<boolean>;
     findAll(): Promise<string>;
-    findOne(id: string): Promise<import(".prisma/client").Conversation & {
+    findOne(id: string): Promise<false | (import(".prisma/client").Conversation & {
+        _count: import(".prisma/client").Prisma.ConversationCountOutputType;
         messages: import(".prisma/client").Messages[];
-    }>;
+    })>;
     update(id: number, updateConversationDto: UpdateConversationDto): Promise<string>;
     remove(id: number): Promise<string>;
 }

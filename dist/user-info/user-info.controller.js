@@ -35,6 +35,9 @@ let UserInfoController = class UserInfoController {
     findAll() {
         return this.userInfoService.findAll();
     }
+    async getOtherUserInfo(id) {
+        return this.userInfoService.getOtherUserInfo(id);
+    }
     async findOne(id, res) {
         try {
             var ans = await this.userInfoService.findOne(id);
@@ -75,6 +78,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserInfoController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)("/other/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserInfoController.prototype, "getOtherUserInfo", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

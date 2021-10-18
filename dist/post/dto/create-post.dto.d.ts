@@ -1,3 +1,5 @@
+import { Status } from ".prisma/client";
+import { Offer } from "src/offer/entities/offer.entity";
 export declare class CreatePostDto {
     id: string;
     title: string;
@@ -7,4 +9,6 @@ export declare class CreatePostDto {
     model: string;
     year: number;
     views: number;
+    offers: Offer | undefined;
+    status: Status;
 }

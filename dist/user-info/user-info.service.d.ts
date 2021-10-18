@@ -3,6 +3,7 @@ import { AddToWatchRequest } from './dto/add-to-watch.dto';
 import { UpdateUserInfoDto } from './dto/update-user-info.dto';
 export declare class UserInfoService {
     private db;
+    getOtherUserInfo(id: string): Promise<import(".prisma/client").UserInfo & {}>;
     addToWatch(postToAdd: AddToWatchRequest): Promise<boolean>;
     constructor(db: UserInfoDatabase);
     create(info: any): Promise<any>;

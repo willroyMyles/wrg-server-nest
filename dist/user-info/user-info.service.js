@@ -17,6 +17,9 @@ let UserInfoService = class UserInfoService {
     constructor(db) {
         this.db = db;
     }
+    getOtherUserInfo(id) {
+        return this.db.getOtherUserInfo(id);
+    }
     addToWatch(postToAdd) {
         return this.db.addToWatch(postToAdd);
     }

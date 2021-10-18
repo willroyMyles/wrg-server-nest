@@ -6,12 +6,13 @@ import { UpdateMessageDto } from './dto/update-message.dto';
 @Injectable()
 export class MessageService {
   findMessages(id: string) {
-    this.db.findMessages(id);
+    return this.db.findMessages(id);
   }
 
   constructor(private db : ConversationDatabase){}
 
   addToConversation(id : string, createMessageDto: CreateMessageDto) {
+    createMessageDto.id = undefined;
     return this.db.addToConversation(id, createMessageDto);
   }
   create(createMessageDto: CreateMessageDto) {

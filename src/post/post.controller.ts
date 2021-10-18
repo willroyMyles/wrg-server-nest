@@ -3,6 +3,8 @@ import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Response } from 'express';
+import GetPostsDto from './dto/getPosts.dto';
+import internal from 'stream';
 
 @Controller('post')
 export class PostController {
@@ -17,14 +19,25 @@ export class PostController {
     }else res.status(500)
   }
 
-  @Get()
-  findAll() {
-    return this.postService.findAll();
+  @Post("/posts")
+  findAll(@Body() body : GetPostsDto) {
+    
+    return this.postService.findAll(body);
+  }
+
+  @Post("/filter/:status")
+  findAllWithStatus(@Param("status") status : string, @Body() body : GetPostsDto) {
+    return this.postService.findAllWithStatus(body, status);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.postService.findOne(+id);
+  }
+
+  @Get("/allOffersByPost/:id")
+  getOffersByPost(@Param('id') id: string){
+    return this.postService.findAllOffers(id);
   }
 
   @Patch(':id')
@@ -37,15 +50,15 @@ export class PostController {
     return this.postService.incrimentView(id);
   }
 
-  @Patch('/view/:id')
-  incrimentComments(@Param('id') id: string) {
-    return this.postService.incrimentComments(id);
-  }
+  // @Patch('/view/:id')
+  // incrimentComments(@Param('id') id: string) {
+  //   return this.postService.incrimentComments(id);
+  // }
 
-  @Patch('/view/:id')
-  incrimentWatching(@Param('id') id: string) {
-    return this.postService.incrimentWatching(id);
-  }
+  // @Patch('/view/:id')
+  // incrimentWatching(@Param('id') id: string) {
+  //   return this.postService.incrimentWatching(id);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

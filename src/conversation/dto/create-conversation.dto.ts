@@ -6,4 +6,5 @@ export class CreateConversationDto {
     messages : any[]
     commentId : string
     postId : string
+    offerId : string
 }

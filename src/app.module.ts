@@ -6,9 +6,10 @@ import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { MessageModule } from './message/message.module';
+import { OfferModule } from './offer/offer.module';
 
 @Module({
-  imports: [UserInfoModule, PostModule, CommentModule, ConversationModule, MessageModule],
+  imports: [UserInfoModule, PostModule, CommentModule, ConversationModule, MessageModule, OfferModule],
   controllers: [AppController],
   providers: [AppService],
 })

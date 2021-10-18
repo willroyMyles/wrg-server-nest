@@ -6,6 +6,7 @@ const create_message_dto_1 = require("../message/dto/create-message.dto");
 const dbBase_1 = require("./dbBase");
 class ConversationDatabase extends dbBase_1.default {
     async findMessages(id) {
+        this.open();
         try {
             var res = await this.prismaClient.conversation.findUnique({ where: { id: id }, include: { messages: true } });
             return res.messages;
@@ -13,17 +14,15 @@ class ConversationDatabase extends dbBase_1.default {
         catch (e) {
             return false;
         }
+        finally {
+            this.close();
+        }
     }
     async create(createConversationDto) {
         try {
             var res = await this.prismaClient.conversation.create({ data: {
-                    reciever: { connect: { userId: createConversationDto.recieverId } },
-                    sender: { connect: { userId: createConversationDto.senderId } },
-                    newMessage: createConversationDto.recieverId,
+                    offerId: createConversationDto.offerId,
                     messages: { create: createConversationDto.messages[0] },
-                    comment: { connect: { id: createConversationDto.commentId } },
-                    post: { connect: { id: createConversationDto.postId } },
-                    userInfoId: createConversationDto.senderId
                 } });
             return res;
         }
@@ -45,7 +44,17 @@ class ConversationDatabase extends dbBase_1.default {
         return `This action returns all conversation`;
     }
     async findOne(id) {
-        return this.prismaClient.conversation.findUnique({ where: { id: id }, include: { messages: true } });
+        this.open();
+        try {
+            var ans = await this.prismaClient.conversation.findUnique({ where: { id: id }, include: { messages: true, _count: true } });
+            return ans;
+        }
+        catch (e) {
+            return false;
+        }
+        finally {
+            this.close();
+        }
     }
     async update(id, updateConversationDto) {
         return `This action updates a #${id} conversation`;

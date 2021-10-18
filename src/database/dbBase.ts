@@ -4,7 +4,16 @@ export default class DbBase {
     protected prismaClient : PrismaClient = new PrismaClient();
 
     constructor(){
-        this.prismaClient.$connect();
         Logger.log("prisma client connected")
     }
+
+
+    async open(){
+        this.prismaClient.$connect
+    }
+
+    async close(){
+        this.prismaClient.$disconnect
+    }
+
 }

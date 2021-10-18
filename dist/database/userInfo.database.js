@@ -6,6 +6,16 @@ const create_user_info_dto_1 = require("../user-info/dto/create-user-info.dto");
 const update_user_info_dto_1 = require("../user-info/dto/update-user-info.dto");
 const dbBase_1 = require("./dbBase");
 class UserInfoDatabase extends dbBase_1.default {
+    async getOtherUserInfo(id) {
+        try {
+            var res = await this.prismaClient.userInfo.findUnique({ where: { id: id }, include: {} });
+            return res;
+        }
+        catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
     async addToWatch(postToAdd) {
         try {
             var ans;
@@ -46,7 +56,7 @@ class UserInfoDatabase extends dbBase_1.default {
     }
     async findOne(id) {
         try {
-            var ans = await this.prismaClient.userInfo.findUnique({ where: { userId: id }, include: { watching: true, incomings: { include: { reciever: true, sender: true, messages: true } }, outgoings: { include: { reciever: true, sender: true, messages: true } }, } });
+            var ans = await this.prismaClient.userInfo.findUnique({ where: { userId: id }, include: { watching: true } });
             return ans;
         }
         catch (e) {

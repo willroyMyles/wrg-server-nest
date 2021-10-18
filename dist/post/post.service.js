@@ -16,6 +16,12 @@ let PostService = class PostService {
     constructor(db) {
         this.db = db;
     }
+    findAllWithStatus(body, status) {
+        return this.db.findAllWithStatus(body, status);
+    }
+    findAllOffers(id) {
+        return this.db.findAllOffers(id);
+    }
     incrimentView(id) {
         return this.db.incrimentView(id);
     }
@@ -28,8 +34,8 @@ let PostService = class PostService {
     create(createPostDto) {
         return this.db.create(createPostDto);
     }
-    findAll() {
-        return this.db.findAll();
+    findAll(body) {
+        return this.db.findAll(body);
     }
     findOne(id) {
         return `This action returns a #${id} post`;

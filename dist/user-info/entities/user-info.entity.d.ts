@@ -1,9 +1,9 @@
 import { Post } from "src/post/entities/post.entity";
 export declare class UserInfo {
-    username: String;
-    userImageUrl: String;
-    userId: String;
-    email: String;
-    alias: String;
+    username: string;
+    userImageUrl: string;
+    userId: string;
+    email: string;
+    alias: string;
     watching: Post[];
 }

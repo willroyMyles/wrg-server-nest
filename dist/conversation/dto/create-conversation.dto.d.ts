@@ -4,4 +4,5 @@ export declare class CreateConversationDto {
     messages: any[];
     commentId: string;
     postId: string;
+    offerId: string;
 }

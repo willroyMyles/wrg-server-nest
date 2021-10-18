@@ -5,11 +5,14 @@ import DbBase from "./dbBase";
 
 export default class ConversationDatabase extends DbBase{
   async findMessages(id: string) {
+    this.open();
    try{
       var res = await this.prismaClient.conversation.findUnique({where : {id : id}, include : {messages : true}});
       return res.messages;
    }catch(e){
       return false;
+   }finally{
+     this.close();
    }
   }
 
@@ -17,14 +20,8 @@ export default class ConversationDatabase extends DbBase{
   async create(createConversationDto: CreateConversationDto) {
     try{
         var res = await this.prismaClient.conversation.create({data : {
-          reciever : {connect : {userId : createConversationDto.recieverId}},
-          sender : {connect : {userId : createConversationDto.senderId}},
-          newMessage : createConversationDto.recieverId,
+          offerId : createConversationDto.offerId,
           messages : {create  : createConversationDto.messages[0]},
-          comment : {connect : {id : createConversationDto.commentId}},
-          post : {connect : {id : createConversationDto.postId}},
-          userInfoId : createConversationDto.senderId
-          
         }});
         return res
     }catch(e){
@@ -34,8 +31,9 @@ export default class ConversationDatabase extends DbBase{
 
   async addToConversation(id : string, createMessageDto: CreateMessageDto) {
     try{
-        var res = await this.prismaClient.conversation.update({where : {id : id}, data : {messages : {create :  createMessageDto}}})
-        if(res) return true;
+      
+        var res = await this.prismaClient.conversation.update({where : {id : id}, data : {messages : {create :  createMessageDto}}, include : {messages : true}})
+        if(res) return res.messages[res.messages.length -1 ];
     }catch(e){
         return false;
     }
@@ -46,7 +44,16 @@ export default class ConversationDatabase extends DbBase{
       }
     
       async findOne(id: string) {
-        return this.prismaClient.conversation.findUnique({where : {id : id}, include : {messages:true}});
+        this.open();
+        try{
+          var ans =  await this.prismaClient.conversation.findUnique({where : {id : id}, include : {messages:true, _count : true}});
+        return ans;
+        }
+        catch(e){
+          return false;
+        }finally{
+          this.close();
+        }
       }
     
      async update(id: number, updateConversationDto: UpdateConversationDto) {

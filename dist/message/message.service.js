@@ -17,7 +17,7 @@ let MessageService = class MessageService {
         this.db = db;
     }
     findMessages(id) {
-        this.db.findMessages(id);
+        return this.db.findMessages(id);
     }
     addToConversation(id, createMessageDto) {
         return this.db.addToConversation(id, createMessageDto);

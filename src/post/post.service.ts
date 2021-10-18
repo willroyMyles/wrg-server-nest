@@ -1,10 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import PostDatabse from 'src/database/post.database';
 import { CreatePostDto } from './dto/create-post.dto';
+import GetPostsDto from './dto/getPosts.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostService {
+  findAllWithStatus(body: GetPostsDto, status: string) {
+    return this.db.findAllWithStatus(body, status);
+  }
+  findAllOffers(id : string) {
+    return this.db.findAllOffers(id);
+  }
   incrimentView(id: string) {
     return this.db.incrimentView(id);
   }
@@ -23,8 +30,8 @@ export class PostService {
     return this.db.create(createPostDto);
   }
 
-  findAll() {
-    return this.db.findAll();
+  findAll(body : GetPostsDto) {
+    return this.db.findAll(body);
   }
 
   findOne(id: number) {

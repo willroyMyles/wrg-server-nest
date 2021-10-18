@@ -5,6 +5,17 @@ import { UpdateUserInfoDto } from "src/user-info/dto/update-user-info.dto";
 import DbBase from "./dbBase";
 
 export default class UserInfoDatabase extends DbBase{
+  async getOtherUserInfo(id: string) {
+    try{
+      var res = await this.prismaClient.userInfo.findUnique({where : {id : id}, include:{
+
+      }});
+      return res;
+    }catch(e){
+      console.log(e);
+      return null
+    }
+  }
   async addToWatch(postToAdd: AddToWatchRequest) : Promise<boolean> {
     try{
         var ans;
@@ -49,7 +60,7 @@ export default class UserInfoDatabase extends DbBase{
     
       async findOne(id: string) {
         try{
-            var ans = await this.prismaClient.userInfo.findUnique({where : { userId : id}, include :{watching : true, incomings : {include : {reciever : true, sender : true, messages:true}}, outgoings : {include : {reciever : true, sender : true, messages : true}},}});
+            var ans = await this.prismaClient.userInfo.findUnique({where : { userId : id}, include :{watching : true}});
             return ans
         }catch(e){
             Logger.log("could not find userinfo with id "+ id);

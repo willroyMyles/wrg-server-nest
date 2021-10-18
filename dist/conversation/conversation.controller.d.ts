@@ -7,9 +7,10 @@ export declare class ConversationController {
     create(createConversationDto: CreateConversationDto): Promise<false | import(".prisma/client").Conversation>;
     addToMessage(createConversationDto: CreateConversationDto): Promise<false | import(".prisma/client").Conversation>;
     findAll(): string;
-    findOne(id: string): Promise<import(".prisma/client").Conversation & {
+    findOne(id: string): Promise<false | (import(".prisma/client").Conversation & {
+        _count: import(".prisma/client").Prisma.ConversationCountOutputType;
         messages: import(".prisma/client").Messages[];
-    }>;
+    })>;
     update(id: string, updateConversationDto: UpdateConversationDto): string;
     remove(id: string): string;
 }

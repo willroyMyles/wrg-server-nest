@@ -26,6 +26,11 @@ export class UserInfoController {
     return this.userInfoService.findAll();
   }
 
+  @Get("/other/:id")
+  async getOtherUserInfo(@Param("id") id : string){
+    return this.userInfoService.getOtherUserInfo(id);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string, @Res() res : Response) {
     try{

@@ -15,11 +15,12 @@ const post_module_1 = require("./post/post.module");
 const comment_module_1 = require("./comment/comment.module");
 const conversation_module_1 = require("./conversation/conversation.module");
 const message_module_1 = require("./message/message.module");
+const offer_module_1 = require("./offer/offer.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_info_module_1.UserInfoModule, post_module_1.PostModule, comment_module_1.CommentModule, conversation_module_1.ConversationModule, message_module_1.MessageModule],
+        imports: [user_info_module_1.UserInfoModule, post_module_1.PostModule, comment_module_1.CommentModule, conversation_module_1.ConversationModule, message_module_1.MessageModule, offer_module_1.OfferModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
