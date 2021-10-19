@@ -3,7 +3,7 @@ import { createServer, Server } from "http";
 import {Socket  } from "socket.io"
 import { MessageService } from "./message.service";
 
-@WebSocketGateway(Number.parseInt(process.env.PORT) || 3000,  {namespace : "msg" ,transports : ["websocket"]})
+@WebSocketGateway({namespace : "msg" ,transports : ["websocket"]})
 export default class MessagesWebsocet implements OnGatewayConnection {
 
     constructor(private messageService : MessageService){}
