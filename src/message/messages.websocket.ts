@@ -29,7 +29,7 @@ export default class MessagesWebsocet implements OnGatewayConnection {
         client.join(data);
 
         client.on(data, args => {
-            client.emit(data, args)
+            // client.emit(data, args)
             client.in(data).emit(data, args)
         })
 
