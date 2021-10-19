@@ -24,6 +24,16 @@ export default class MessagesWebsocet implements OnGatewayConnection {
         
     }
 
+    @SubscribeMessage('simple')
+    handleSimpleEvent(@MessageBody() data : string, @ConnectedSocket() client : Socket){
+        client.join(data);
+
+        client.on(data, args => {
+            client.emit(data, args)
+            client.in(data).emit(data, args)
+        })
+    }
+
     @SubscribeMessage('create')
     handleEvent(@MessageBody() data : string, @ConnectedSocket() client : Socket){
 
