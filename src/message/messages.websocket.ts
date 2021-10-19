@@ -32,6 +32,9 @@ export default class MessagesWebsocet implements OnGatewayConnection {
             client.emit(data, args)
             client.in(data).emit(data, args)
         })
+
+        return `you joined room ${data}`;
+
     }
 
     @SubscribeMessage('create')
