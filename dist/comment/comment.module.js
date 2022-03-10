@@ -14,7 +14,7 @@ const comment_database_1 = require("../database/comment.database");
 let CommentModule = class CommentModule {
 };
 CommentModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         controllers: [comment_controller_1.CommentController],
         providers: [comment_service_1.CommentService, comment_database_1.default],
     })

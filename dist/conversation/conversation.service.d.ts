@@ -4,12 +4,9 @@ import { UpdateConversationDto } from './dto/update-conversation.dto';
 export declare class ConversationService {
     private db;
     constructor(db: ConversationDatabase);
-    create(createConversationDto: CreateConversationDto): Promise<false | import(".prisma/client").Conversation>;
+    create(createConversationDto: CreateConversationDto): Promise<any>;
     findAll(): string;
-    findOne(id: string): Promise<false | (import(".prisma/client").Conversation & {
-        _count: import(".prisma/client").Prisma.ConversationCountOutputType;
-        messages: import(".prisma/client").Messages[];
-    })>;
+    findOne(id: string): Promise<any>;
     update(id: number, updateConversationDto: UpdateConversationDto): string;
     remove(id: number): string;
 }

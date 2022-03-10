@@ -14,7 +14,7 @@ const post_database_1 = require("../database/post.database");
 let PostModule = class PostModule {
 };
 PostModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         controllers: [post_controller_1.PostController],
         providers: [post_service_1.PostService, post_database_1.default]
     })

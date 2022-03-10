@@ -45,7 +45,7 @@ let UserInfoService = class UserInfoService {
     }
 };
 UserInfoService = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [userInfo_database_1.default])
 ], UserInfoService);
 exports.UserInfoService = UserInfoService;

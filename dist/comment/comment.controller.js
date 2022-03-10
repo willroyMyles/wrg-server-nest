@@ -41,49 +41,48 @@ let CommentController = class CommentController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    common_1.Post(),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_comment_dto_1.CreateCommentDto]),
     __metadata("design:returntype", void 0)
 ], CommentController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], CommentController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CommentController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Get)('/post/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Get('/post/:id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CommentController.prototype, "findOneForPost", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Patch(':id'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_comment_dto_1.UpdateCommentDto]),
     __metadata("design:returntype", void 0)
 ], CommentController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Delete(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CommentController.prototype, "remove", null);
 CommentController = __decorate([
-    (0, common_1.Controller)('comment'),
+    common_1.Controller('comment'),
     __metadata("design:paramtypes", [comment_service_1.CommentService])
 ], CommentController);
 exports.CommentController = CommentController;

@@ -1,1 +1,1 @@
-export declare const getStatus: (status: string) => "OPEN" | "PROCESSING" | "COMPLETED" | "EXPIRED" | "CANCELED";
+export declare const getStatus: (status: string) => any;

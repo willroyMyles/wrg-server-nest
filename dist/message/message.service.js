@@ -20,6 +20,7 @@ let MessageService = class MessageService {
         return this.db.findMessages(id);
     }
     addToConversation(id, createMessageDto) {
+        createMessageDto.id = undefined;
         return this.db.addToConversation(id, createMessageDto);
     }
     create(createMessageDto) {
@@ -39,7 +40,7 @@ let MessageService = class MessageService {
     }
 };
 MessageService = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [conversation_database_1.default])
 ], MessageService);
 exports.MessageService = MessageService;

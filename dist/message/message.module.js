@@ -15,7 +15,7 @@ const messages_websocket_1 = require("./messages.websocket");
 let MessageModule = class MessageModule {
 };
 MessageModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         controllers: [message_controller_1.MessageController],
         providers: [message_service_1.MessageService, conversation_database_1.default, messages_websocket_1.default]
     })

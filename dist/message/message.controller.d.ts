@@ -5,9 +5,9 @@ export declare class MessageController {
     private readonly messageService;
     constructor(messageService: MessageService);
     create(createMessageDto: CreateMessageDto): string;
-    addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<boolean>;
+    addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<any>;
     findAll(): string;
-    findMessages(id: string): Promise<false | import(".prisma/client").Messages[]>;
+    findMessages(id: string): Promise<any>;
     update(id: string, updateMessageDto: UpdateMessageDto): string;
     remove(id: string): string;
 }

@@ -5,9 +5,9 @@ export declare class CommentController {
     private readonly commentService;
     constructor(commentService: CommentService);
     create(createCommentDto: CreateCommentDto): Promise<boolean>;
-    findAll(): Promise<false | import(".prisma/client").Comment[]>;
-    findOne(id: string): Promise<false | import(".prisma/client").Comment>;
-    findOneForPost(id: string): Promise<import(".prisma/client").Comment[]>;
-    update(id: string, updateCommentDto: UpdateCommentDto): Promise<false | import(".prisma/client").Comment>;
-    remove(id: string): Promise<false | import(".prisma/client").Comment>;
+    findAll(): Promise<any>;
+    findOne(id: string): Promise<any>;
+    findOneForPost(id: string): Promise<any>;
+    update(id: string, updateCommentDto: UpdateCommentDto): Promise<any>;
+    remove(id: string): Promise<any>;
 }

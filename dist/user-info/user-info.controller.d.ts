@@ -9,8 +9,8 @@ export declare class UserInfoController {
     create(createUserInfoDto: CreateUserInfoDto): Promise<any>;
     modifyWatch(postToAdd: AddToWatchRequest, res: Response): Promise<void>;
     findAll(): Promise<any>;
-    getOtherUserInfo(id: string): Promise<import(".prisma/client").UserInfo & {}>;
-    findOne(id: string, res: Response): Promise<Response<any, Record<string, any>>>;
-    update(id: string, updateUserInfoDto: UpdateUserInfoDto): Promise<import(".prisma/client").UserInfo>;
-    remove(id: string): Promise<import(".prisma/client").UserInfo>;
+    getOtherUserInfo(id: string): Promise<any>;
+    findOne(id: string, res: Response): Promise<any>;
+    update(id: string, updateUserInfoDto: UpdateUserInfoDto): Promise<any>;
+    remove(id: string): Promise<any>;
 }

@@ -33,7 +33,7 @@ let ConversationService = class ConversationService {
     }
 };
 ConversationService = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [conversation_database_1.default])
 ], ConversationService);
 exports.ConversationService = ConversationService;

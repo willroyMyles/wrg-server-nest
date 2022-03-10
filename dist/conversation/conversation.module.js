@@ -14,7 +14,7 @@ const conversation_database_1 = require("../database/conversation.database");
 let ConversationModule = class ConversationModule {
 };
 ConversationModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         controllers: [conversation_controller_1.ConversationController],
         providers: [conversation_service_1.ConversationService, conversation_database_1.default]
     })

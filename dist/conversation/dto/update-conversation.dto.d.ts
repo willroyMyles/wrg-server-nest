@@ -1,5 +1,4 @@
-import { CreateConversationDto } from './create-conversation.dto';
-declare const UpdateConversationDto_base: import("@nestjs/mapped-types").MappedType<Partial<CreateConversationDto>>;
+declare const UpdateConversationDto_base: any;
 export declare class UpdateConversationDto extends UpdateConversationDto_base {
 }
 export {};

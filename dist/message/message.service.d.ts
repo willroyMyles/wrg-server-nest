@@ -3,9 +3,9 @@ import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
 export declare class MessageService {
     private db;
-    findMessages(id: string): Promise<false | import(".prisma/client").Messages[]>;
+    findMessages(id: string): Promise<any>;
     constructor(db: ConversationDatabase);
-    addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<boolean>;
+    addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<any>;
     create(createMessageDto: CreateMessageDto): string;
     findAll(): string;
     findOne(id: number): string;

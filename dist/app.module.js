@@ -19,7 +19,7 @@ const offer_module_1 = require("./offer/offer.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         imports: [user_info_module_1.UserInfoModule, post_module_1.PostModule, comment_module_1.CommentModule, conversation_module_1.ConversationModule, message_module_1.MessageModule, offer_module_1.OfferModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

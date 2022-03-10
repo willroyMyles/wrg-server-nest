@@ -54,7 +54,7 @@ class PostDatabse extends dbBase_1.default {
     async create(createPostDto) {
         try {
             createPostDto.offers = undefined;
-            createPostDto.status = (0, helpers_1.getStatus)(createPostDto.status);
+            createPostDto.status = helpers_1.getStatus(createPostDto.status);
             var ans = await this.prismaClient.post.create({ data: createPostDto });
             return ans;
         }
@@ -82,7 +82,7 @@ class PostDatabse extends dbBase_1.default {
     async findAllWithStatus(body, status) {
         try {
             var { amount, lastId } = body;
-            var st = (0, helpers_1.getStatus)(status);
+            var st = helpers_1.getStatus(status);
             if (!amount)
                 amount = 4;
             if (!lastId)

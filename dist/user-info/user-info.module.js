@@ -14,7 +14,7 @@ const userInfo_database_1 = require("../database/userInfo.database");
 let UserInfoModule = class UserInfoModule {
 };
 UserInfoModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         controllers: [user_info_controller_1.UserInfoController],
         providers: [user_info_service_1.UserInfoService, userInfo_database_1.default]
     })

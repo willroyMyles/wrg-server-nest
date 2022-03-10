@@ -14,7 +14,7 @@ const offer_database_1 = require("../database/offer.database");
 let OfferModule = class OfferModule {
 };
 OfferModule = __decorate([
-    (0, common_1.Module)({
+    common_1.Module({
         controllers: [offer_controller_1.OfferController],
         providers: [offer_service_1.OfferService, offer_database_1.default]
     })

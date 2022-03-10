@@ -3,14 +3,11 @@ import { UpdateConversationDto } from "src/conversation/dto/update-conversation.
 import { CreateMessageDto } from "src/message/dto/create-message.dto";
 import DbBase from "./dbBase";
 export default class ConversationDatabase extends DbBase {
-    findMessages(id: string): Promise<false | import(".prisma/client").Messages[]>;
-    create(createConversationDto: CreateConversationDto): Promise<false | import(".prisma/client").Conversation>;
-    addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<boolean>;
+    findMessages(id: string): Promise<any>;
+    create(createConversationDto: CreateConversationDto): Promise<any>;
+    addToConversation(id: string, createMessageDto: CreateMessageDto): Promise<any>;
     findAll(): Promise<string>;
-    findOne(id: string): Promise<false | (import(".prisma/client").Conversation & {
-        _count: import(".prisma/client").Prisma.ConversationCountOutputType;
-        messages: import(".prisma/client").Messages[];
-    })>;
+    findOne(id: string): Promise<any>;
     update(id: number, updateConversationDto: UpdateConversationDto): Promise<string>;
     remove(id: number): Promise<string>;
 }

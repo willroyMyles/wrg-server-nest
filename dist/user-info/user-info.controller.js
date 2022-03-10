@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserInfoController = void 0;
 const common_1 = require("@nestjs/common");
@@ -18,6 +19,7 @@ const user_info_service_1 = require("./user-info.service");
 const create_user_info_dto_1 = require("./dto/create-user-info.dto");
 const update_user_info_dto_1 = require("./dto/update-user-info.dto");
 const add_to_watch_dto_1 = require("./dto/add-to-watch.dto");
+const express_1 = require("express");
 let UserInfoController = class UserInfoController {
     constructor(userInfoService) {
         this.userInfoService = userInfoService;
@@ -58,58 +60,55 @@ let UserInfoController = class UserInfoController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    common_1.Post(),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_info_dto_1.CreateUserInfoDto]),
     __metadata("design:returntype", void 0)
 ], UserInfoController.prototype, "create", null);
 __decorate([
-    (0, common_1.Post)("/watching"),
-    __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Res)()),
+    common_1.Post("/watching"),
+    __param(0, common_1.Body()), __param(1, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [add_to_watch_dto_1.AddToWatchRequest, Object]),
+    __metadata("design:paramtypes", [add_to_watch_dto_1.AddToWatchRequest, typeof (_a = typeof express_1.Response !== "undefined" && express_1.Response) === "function" ? _a : Object]),
     __metadata("design:returntype", Promise)
 ], UserInfoController.prototype, "modifyWatch", null);
 __decorate([
-    (0, common_1.Get)(),
+    common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserInfoController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)("/other/:id"),
-    __param(0, (0, common_1.Param)("id")),
+    common_1.Get("/other/:id"),
+    __param(0, common_1.Param("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserInfoController.prototype, "getOtherUserInfo", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Res)()),
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, typeof (_b = typeof express_1.Response !== "undefined" && express_1.Response) === "function" ? _b : Object]),
     __metadata("design:returntype", Promise)
 ], UserInfoController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Patch(':id'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_info_dto_1.UpdateUserInfoDto]),
     __metadata("design:returntype", void 0)
 ], UserInfoController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Delete(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UserInfoController.prototype, "remove", null);
 UserInfoController = __decorate([
-    (0, common_1.Controller)('user-info'),
+    common_1.Controller('user-info'),
     __metadata("design:paramtypes", [user_info_service_1.UserInfoService])
 ], UserInfoController);
 exports.UserInfoController = UserInfoController;

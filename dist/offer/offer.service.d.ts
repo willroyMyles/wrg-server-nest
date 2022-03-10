@@ -3,15 +3,9 @@ import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
 export declare class OfferService {
     private db;
-    findAllOffersByUserId(id: string): Promise<(import(".prisma/client").Offer & {
-        post: import(".prisma/client").Post;
-        sender: import(".prisma/client").UserInfo;
-        conversation: import(".prisma/client").Conversation & {
-            messages: import(".prisma/client").Messages[];
-        };
-    })[]>;
+    findAllOffersByUserId(id: string): Promise<any>;
     constructor(db: OfferDatabase);
-    create(createOfferDto: CreateOfferDto): Promise<import(".prisma/client").Offer>;
+    create(createOfferDto: CreateOfferDto): Promise<any>;
     findAll(): string;
     findOne(id: string): string;
     update(id: string, updateOfferDto: UpdateOfferDto): string;

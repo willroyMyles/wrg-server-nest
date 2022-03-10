@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostController = void 0;
 const common_1 = require("@nestjs/common");
 const post_service_1 = require("./post.service");
 const create_post_dto_1 = require("./dto/create-post.dto");
 const update_post_dto_1 = require("./dto/update-post.dto");
+const express_1 = require("express");
 const getPosts_dto_1 = require("./dto/getPosts.dto");
 let PostController = class PostController {
     constructor(postService) {
@@ -53,66 +55,63 @@ let PostController = class PostController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Res)()),
+    common_1.Post(),
+    __param(0, common_1.Body()), __param(1, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto, Object]),
+    __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto, typeof (_a = typeof express_1.Response !== "undefined" && express_1.Response) === "function" ? _a : Object]),
     __metadata("design:returntype", Promise)
 ], PostController.prototype, "create", null);
 __decorate([
-    (0, common_1.Post)("/posts"),
-    __param(0, (0, common_1.Body)()),
+    common_1.Post("/posts"),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [getPosts_dto_1.default]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Post)("/filter/:status"),
-    __param(0, (0, common_1.Param)("status")),
-    __param(1, (0, common_1.Body)()),
+    common_1.Post("/filter/:status"),
+    __param(0, common_1.Param("status")), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, getPosts_dto_1.default]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "findAllWithStatus", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Get)("/allOffersByPost/:id"),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Get("/allOffersByPost/:id"),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "getOffersByPost", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Patch(':id'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_post_dto_1.UpdatePostDto]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "update", null);
 __decorate([
-    (0, common_1.Patch)('/view/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Patch('/view/:id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "incrimentView", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Delete(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "remove", null);
 PostController = __decorate([
-    (0, common_1.Controller)('post'),
+    common_1.Controller('post'),
     __metadata("design:paramtypes", [post_service_1.PostService])
 ], PostController);
 exports.PostController = PostController;

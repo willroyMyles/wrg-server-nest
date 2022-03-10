@@ -36,7 +36,7 @@ let OfferService = class OfferService {
     }
 };
 OfferService = __decorate([
-    (0, common_1.Injectable)(),
+    common_1.Injectable(),
     __metadata("design:paramtypes", [offer_database_1.default])
 ], OfferService);
 exports.OfferService = OfferService;

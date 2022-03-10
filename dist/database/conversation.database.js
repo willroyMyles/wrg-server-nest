@@ -32,9 +32,9 @@ class ConversationDatabase extends dbBase_1.default {
     }
     async addToConversation(id, createMessageDto) {
         try {
-            var res = await this.prismaClient.conversation.update({ where: { id: id }, data: { messages: { create: createMessageDto } } });
+            var res = await this.prismaClient.conversation.update({ where: { id: id }, data: { messages: { create: createMessageDto } }, include: { messages: true } });
             if (res)
-                return true;
+                return res.messages[res.messages.length - 1];
         }
         catch (e) {
             return false;

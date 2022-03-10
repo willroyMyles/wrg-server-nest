@@ -41,49 +41,48 @@ let ConversationController = class ConversationController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    common_1.Post(),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_conversation_dto_1.CreateConversationDto]),
     __metadata("design:returntype", void 0)
 ], ConversationController.prototype, "create", null);
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    common_1.Post(),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_conversation_dto_1.CreateConversationDto]),
     __metadata("design:returntype", void 0)
 ], ConversationController.prototype, "addToMessage", null);
 __decorate([
-    (0, common_1.Get)(),
+    common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ConversationController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ConversationController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    common_1.Patch(':id'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_conversation_dto_1.UpdateConversationDto]),
     __metadata("design:returntype", void 0)
 ], ConversationController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    common_1.Delete(':id'),
+    __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ConversationController.prototype, "remove", null);
 ConversationController = __decorate([
-    (0, common_1.Controller)('conversation'),
+    common_1.Controller('conversation'),
     __metadata("design:paramtypes", [conversation_service_1.ConversationService])
 ], ConversationController);
 exports.ConversationController = ConversationController;
