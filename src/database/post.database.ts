@@ -7,7 +7,7 @@ import { Post } from "src/post/entities/post.entity";
 import DbBase from "./dbBase";
 
 export default class PostDatabse extends DbBase {
-  
+
   async findAllOffers(id: string) {
     try {
       var ans = await this.prismaClient.post.findMany({ include: { offers: true }, where: { userInfoId: id } });
@@ -49,13 +49,18 @@ export default class PostDatabse extends DbBase {
     }
   }
 
-  
 
-  async create(createPostDto: CreatePostDto) {
+
+  async create(createPostDto: CreatePostDto, userId?: string) {
     try {
       createPostDto.offers = undefined;
       createPostDto.status = getStatus(createPostDto.status);
-      var ans = await this.prismaClient.post.create({ data: createPostDto });
+      var ans = await this.prismaClient.post.create({
+        data: {
+          ...createPostDto,
+          userInfoId: userId
+        }
+      });
       return ans;
     } catch (e) {
       console.log(e);
@@ -63,14 +68,14 @@ export default class PostDatabse extends DbBase {
     }
   }
 
-  async findAll(body : GetPostsDto) {
+  async findAll(body: GetPostsDto) {
     try {
-      var {amount, lastId} = body;
-      if(!amount) amount = 4;
-      if(!lastId)
-      var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy : {createdAt : "desc"}, take : amount, });
+      var { amount, lastId } = body;
+      if (!amount) amount = 4;
+      if (!lastId)
+        var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy: { createdAt: "desc" }, take: amount, });
       else
-      var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy : {createdAt : "desc"}, take : amount, skip:1, cursor : {id : body.lastId},});
+        var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy: { createdAt: "desc" }, take: amount, skip: 1, cursor: { id: body.lastId }, });
 
       return ans;
     } catch (e) {
@@ -81,21 +86,21 @@ export default class PostDatabse extends DbBase {
 
   async findAllWithStatus(body: GetPostsDto, status: string) {
     try {
-      var {amount, lastId} = body;
+      var { amount, lastId } = body;
       var st = getStatus(status);
-      if(!amount) amount = 4;
-      if(!lastId)
-      var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy : {createdAt : "desc"}, take : amount, where : {status : st} });
+      if (!amount) amount = 4;
+      if (!lastId)
+        var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy: { createdAt: "desc" }, take: amount, where: { status: st } });
       else
-      var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy : {createdAt : "desc"}, take : amount, skip:1, cursor : {id : body.lastId}, where : {status : st}});
+        var ans = await this.prismaClient.post.findMany({ include: { UserInfo: true }, orderBy: { createdAt: "desc" }, take: amount, skip: 1, cursor: { id: body.lastId }, where: { status: st } });
 
       return ans;
     } catch (e) {
       console.log(e);
       return [];
     } finally {
-      
-      
+
+
     }
   }
 

@@ -9,7 +9,7 @@ export class PostService {
   findAllWithStatus(body: GetPostsDto, status: string) {
     return this.db.findAllWithStatus(body, status);
   }
-  findAllOffers(id : string) {
+  findAllOffers(id: string) {
     return this.db.findAllOffers(id);
   }
   incrimentView(id: string) {
@@ -24,13 +24,13 @@ export class PostService {
     return this.db.incrimentComments(id);
   }
 
-  constructor(private db : PostDatabse){}
+  constructor(private db: PostDatabse) { }
 
-  create(createPostDto: CreatePostDto) {
-    return this.db.create(createPostDto);
+  create(createPostDto: CreatePostDto, userId?: string) {
+    return this.db.create(createPostDto, userId);
   }
 
-  findAll(body : GetPostsDto) {
+  findAll(body: GetPostsDto) {
     return this.db.findAll(body);
   }
 

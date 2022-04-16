@@ -8,39 +8,43 @@ generator client {
 }
 
 model UserInfo {
-  id             String   @id @default(uuid())
+  id             String     @id @default(uuid())
   username       String?
   userImageUrl   String?
-  userId         String?  @unique
-  email          String?  @unique
+  userId         String?    @unique
+  email          String?    @unique
   alias          String?
-  posts          Post[]   @relation("posts")
-  watching       Post[]   @relation("watching")
+  posts          Post[]     @relation("posts")
+  watching       Post[]     @relation("watching")
   postId         String?
-  createdAt      DateTime @default(now())
-  outgoingOffers Offer[]  @relation("outgoingOffers")
-  incomingOffers Offer[]  @relation("incomingOffers")
+  createdAt      DateTime   @default(now())
+  outgoingOffers Offer[]    @relation("outgoingOffers")
+  incomingOffers Offer[]    @relation("incomingOffers")
+  Question       Question[]
+  Answer         Answer[]
 }
 
 model Post {
-  id         String    @id @default(uuid())
+  id         String     @id @default(uuid())
   title      String?
   content    String?
   category   String?
   make       String?
   model      String?
-  year       Int?      @default(2000)
-  views      Int?      @default(0)
-  watching   Int?      @default(0)
-  commentss  Int?      @default(0)
+  year       Int?       @default(2000)
+  views      Int?       @default(0)
+  watching   Int?       @default(0)
+  commentss  Int?       @default(0)
   userInfoId String?
   watchingId String?
-  UserInfo   UserInfo? @relation("posts", fields: [userInfoId], references: [userId])
-  watchers   UserInfo? @relation("watching", fields: [watchingId], references: [id])
+  UserInfo   UserInfo?  @relation("posts", fields: [userInfoId], references: [userId])
+  watchers   UserInfo?  @relation("watching", fields: [watchingId], references: [id])
   comments   Comment[]
-  createdAt  DateTime  @default(now())
+  createdAt  DateTime   @default(now())
   offers     Offer[]
-  status     Status    @default(OPEN)
+  status     Status     @default(OPEN)
+  Question   Question[]
+  Answer     Answer[]
 }
 
 model Messages {
@@ -88,7 +92,7 @@ model Offer {
   senderId       String
   recieverId     String
   conversation   Conversation? @relation(fields: [conversationId], references: [id])
-  conversationId String?
+  conversationId String?       @unique
 }
 
 enum Status {
@@ -97,4 +101,29 @@ enum Status {
   COMPLETED
   EXPIRED
   CANCELED
+}
+
+model Question {
+  id         String   @id @default(uuid())
+  content    String
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
+  userInfo   UserInfo @relation(fields: [userInfoId], references: [id])
+  userInfoId String
+  answer     Answer?
+  answerId   String?
+  createdAt  DateTime @default(now())
+}
+
+model Answer {
+  id         String   @id @default(uuid())
+  content    String
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
+  userInfo   UserInfo @relation(fields: [userInfoId], references: [id])
+  userInfoId String
+  Question   Question @relation(fields: [questionId], references: [id])
+  questionId String   @unique
+  createdAt  DateTime @default(now())
+
 }
